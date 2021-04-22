@@ -21,6 +21,18 @@
   --purple-800: #6F48C9;
 }
 
+
+:root::-webkit-scrollbar {
+  width: 4px;
+}
+:root::-webkit-scrollbar-thumb {
+  background-color: var(--purple-300);
+  border-radius: 4px;
+}
+:root:-webkit-scrollbar-track {
+  background-color: var(--white);
+}
+
 @media (max-width: 1080px) {
   html {
     font-size: 93.75%; // 15px

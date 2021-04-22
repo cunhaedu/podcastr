@@ -7,7 +7,6 @@ import { api } from '../services/api';
 import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
 import styles from './home.module.scss';
 
-
 type Episode = {
   id: number;
   title: string;
@@ -16,7 +15,6 @@ type Episode = {
   publishedAt: string;
   durationAsString: string;
   duration: number;
-  description: string;
   url: string;
 }
 
@@ -134,7 +132,6 @@ export const getStaticProps: GetStaticProps = async() => {
       }),
       durationAsString: convertDurationToTimeString(Number(episode.file.duration)),
       duration: Number(episode.file.duration),
-      description: episode.description,
       url: episode.file.url
     }
   })
@@ -147,6 +144,6 @@ export const getStaticProps: GetStaticProps = async() => {
       latestEpisodes,
       allEpisodes
     },
-    revalidate: 60 * 60 * 8,
+    revalidate: 60 * 60 * 8, // 8 hours
   }
 }
