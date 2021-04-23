@@ -42,7 +42,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                   objectFit="cover"
                 />
                 </div>
-               
+
                <div className={styles.episodeDetails}>
                  <Link href={`/episodes/${episode.id}`}>
                  <a>{episode.title}</a>
