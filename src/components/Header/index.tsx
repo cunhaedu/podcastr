@@ -1,6 +1,5 @@
 import format from 'date-fns/format';
 import ptBr from 'date-fns/locale/pt-BR';
-import React from 'react';
 import styles from './styles.module.scss';
 
 export function Header() {

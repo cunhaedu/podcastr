@@ -3,7 +3,6 @@ import { ptBR } from 'date-fns/locale';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { api } from '../../services/api';
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
 import styles from './episodes.module.scss';
@@ -24,23 +23,19 @@ type EpisodeProps = {
   episode: Episode;
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: 'blocking',
-  }
-}
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: [],
+  fallback: 'blocking',
+});
 
 export default function Episode({ episode }: EpisodeProps) {
-  const router = useRouter();
-
   return (
     <div className={styles.container}>
       <div className={styles.episode}>
         <div className={styles.thumbnailContainer}>
           <Link href="/">
             <button type="button">
-              <img src="/arrow-left.svg" alt="Voltar"/>
+              <img src="/arrow-left.svg" alt="Voltar" />
             </button>
           </Link>
           <Image
@@ -51,7 +46,7 @@ export default function Episode({ episode }: EpisodeProps) {
             objectFit="cover"
           />
           <button type="button">
-            <img src="/play.svg" alt="Tocar episódio"/>
+            <img src="/play.svg" alt="Tocar episódio" />
           </button>
         </div>
 
@@ -63,12 +58,12 @@ export default function Episode({ episode }: EpisodeProps) {
         </header>
 
         <div
-        className={styles.description}
-        dangerouslySetInnerHTML={{ __html: episode.description }}
+          className={styles.description}
+          dangerouslySetInnerHTML={{ __html: episode.description }}
         />
       </div>
     </div>
-  )
+  );
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
@@ -87,13 +82,13 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     durationAsString: convertDurationToTimeString(Number(data.file.duration)),
     duration: Number(data.file.duration),
     description: data.description,
-    url: data.file.url
-  }
+    url: data.file.url,
+  };
 
   return {
     props: {
       episode,
     },
     revalidate: 60 * 60 * 24, // 24 hours
-  }
-}
+  };
+};
