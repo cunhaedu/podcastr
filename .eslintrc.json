@@ -28,6 +28,7 @@
     "rules": {
       "prettier/prettier": "off",
       "react/no-danger": "off",
+      "jsx-a11y/media-has-caption": "off",
       "jsx-a11y/anchor-is-valid": "off",
       "jsx-a11y/control-has-associated-label": "off",
       "@typescript-eslint/explicit-module-boundary-types": "off",
