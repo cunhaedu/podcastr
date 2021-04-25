@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import { useContext, useEffect, useRef } from 'react';
-import { PlayerContext } from '../../contexts/PlayerContext';
+import { useEffect, useRef } from 'react';
+import { usePlayer } from '../../contexts/PlayerContext';
 import styles from './styles.module.scss';
 
 export function Player() {
@@ -18,7 +18,9 @@ export function Player() {
     playPrevious,
     hasNext,
     hasPrevious,
-  } = useContext(PlayerContext);
+    isLooping,
+    toggleLoop,
+  } = usePlayer();
 
   const episode = episodeList[currentEpisodeIndex];
 
@@ -79,6 +81,7 @@ export function Player() {
             ref={audioRef}
             onPlay={() => setPlayingState(true)}
             onPause={() => setPlayingState(false)}
+            loop={isLooping}
             autoPlay
           />
         )}
@@ -109,7 +112,12 @@ export function Player() {
             <img src="/play-next.svg" alt="Tocar próxima" />
           </button>
 
-          <button type="button" disabled={!episode}>
+          <button
+            type="button"
+            disabled={!episode}
+            onClick={() => toggleLoop()}
+            className={isLooping ? styles.isActive : ''}
+          >
             <img src="/repeat.svg" alt="Repetir" />
           </button>
         </div>

@@ -2,8 +2,7 @@ import Document, {
   Head,
   Html,
   Main,
-  // eslint-disable-next-line comma-dangle
-  NextScript
+  NextScript,
 } from 'next/document';
 
 export default class MyDocument extends Document {
